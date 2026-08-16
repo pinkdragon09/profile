@@ -1,0 +1,397 @@
+<!doctype html>
+<title>Helen Qin — The Journal</title>
+<meta name="description" content="Style study: academic-journal treatment of Helen Qin's profile.">
+<style>
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #12182a;
+      --paper-raised: #171f36;
+      --ink: #e9e6da;
+      --ink-soft: #a9b0c8;
+      --brass: #c99a4f;
+      --brass-soft: #8c8360;
+      --rule: #2c3554;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12182a;
+    --paper-raised: #171f36;
+    --ink: #e9e6da;
+    --ink-soft: #a9b0c8;
+    --brass: #c99a4f;
+    --brass-soft: #8c8360;
+    --rule: #2c3554;
+  }
+  :root {
+    --paper: #f5f3ec;
+    --paper-raised: #ffffff;
+    --ink: #1b2440;
+    --ink-soft: #4d5678;
+    --brass: #96702c;
+    --brass-soft: #b0a48a;
+    --rule: #cdc6b2;
+    --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+    --sans: Optima, Candara, "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  .masthead {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 2rem;
+    border-bottom: 3px double var(--rule);
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 1.75rem;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+    letter-spacing: 0.01em;
+  }
+  .masthead .role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .masthead .dek {
+    max-width: 42rem;
+    margin: 1.25rem 0 0;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+
+  .layout {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+  @media (max-width: 46rem) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 2.5rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+  nav.toc .label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brass);
+    margin-bottom: 0.9rem;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: sec;
+    border-left: 1px solid var(--rule);
+  }
+  nav.toc li { counter-increment: sec; }
+  nav.toc a {
+    display: block;
+    padding: 0.4rem 0 0.4rem 1rem;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+  nav.toc a::before {
+    content: counter(sec, decimal-leading-zero) " ";
+    color: var(--brass-soft);
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--ink); border-left-color: var(--brass); }
+
+  main { min-width: 0; }
+  section { margin-bottom: 3.5rem; }
+  section h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin: 0 0 0.3rem;
+    text-wrap: balance;
+  }
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0.5rem 0 1.5rem;
+  }
+  p.lede { max-width: 42rem; color: var(--ink-soft); }
+
+  .entry { margin-bottom: 1.4rem; max-width: 42rem; }
+  .entry .meta {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--brass);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .entry h3 { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; margin: 0.2rem 0 0.25rem; }
+  .entry p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pubs li {
+    counter-increment: pub;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  .pubs { counter-reset: pub; }
+  .pubs li::before {
+    content: "[" counter(pub) "]";
+    font-family: var(--mono);
+    color: var(--brass-soft);
+    font-size: 0.85rem;
+  }
+  .pubs .cite-title { font-weight: 600; }
+  .pubs .cite-venue { color: var(--ink-soft); font-size: 0.9rem; }
+  .pubs .cite-tag {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+    border: 1px solid var(--brass-soft);
+    border-radius: 2px;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .honors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0 2.5rem;
+  }
+  .honors-grid dl { margin: 0; }
+  .honors-grid dt {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--brass);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.9rem 0 0.2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .honors-grid dt:first-child { border-top: none; }
+  .honors-grid dd { margin: 0 0 0; font-size: 0.92rem; color: var(--ink); }
+  .honors-grid dd + dt { border-top: 1px solid var(--rule); }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 0.5rem 0.8rem; max-width: 42rem; }
+  .skills span {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    padding: 0.2rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+
+  footer {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 2rem 2rem 3.5rem;
+    border-top: 3px double var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+  footer a { color: var(--brass); text-decoration: none; }
+</style>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Vol. I &middot; No. 2026</span>
+    <span>Falls Church, Virginia</span>
+  </div>
+  <h1>Helen T. Qin</h1>
+  <p class="role">Student researcher &middot; competitive mathematician</p>
+  <p class="dek">Thomas Jefferson High School for Science and Technology, Class of 2027. Working across agentic security, speech-disorder AI, and adversarial machine learning — with a parallel record in mathematics olympiads and classical languages.</p>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Table of contents">
+    <div class="label">Contents</div>
+    <ol>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#honors">Honors</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#skills">Skills</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="research">
+      <h2>Research</h2>
+      <hr class="section-rule">
+      <p class="lede">Two years of applied ML research spanning cybersecurity and assistive speech technology, under university mentorship.</p>
+
+      <div class="entry">
+        <div class="meta">Summer 2025 &middot; George Mason University</div>
+        <h3>Research Intern — Agentic Security</h3>
+        <p>Investigated failure modes and defenses for autonomous, tool-using AI agents.</p>
+      </div>
+      <div class="entry">
+        <div class="meta">Fall 2024 &middot; University at Buffalo, AI4ExceptionalEd</div>
+        <h3>AI-Based Automatic Screening for Children with Speech Disorders</h3>
+        <p>Mentor: Dr. Jinjun Xiong. Explored automatic speech recognition as a low-cost screening tool for pediatric speech-language disorders.</p>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <hr class="section-rule">
+      <ol class="pubs">
+        <li>
+          <span></span>
+          <div>
+            <div class="cite-title">From Imperfect Teachers to Robust Students: Targeted World Model Augmented Distillation to Enhance Edge-AI's Resilience to Rare-Event Failures</div>
+            <div class="cite-venue">H. Qin, B. Yuan. 56th IEEE/IFIP International Conference on Dependable Systems and Networks, Charlotte, 2026 (submitted).</div>
+          </div>
+        </li>
+        <li>
+          <span></span>
+          <div>
+            <div class="cite-title">Lost in Transcription: Influence of Dialect on Whisper's Performance</div>
+            <div class="cite-venue">H. Qin. IEEE ICDM Undergraduate &amp; High School Symposium, Washington, DC, Nov. 2025. DOI: 10.1109/ICDMW69685.2025.00392.</div>
+            <span class="cite-tag">Rising Star Award</span>
+          </div>
+        </li>
+        <li>
+          <span></span>
+          <div>
+            <div class="cite-title">Evaluating a Malware Benchmark Dataset Using Neural Network Models and Shapley-Based Explainability</div>
+            <div class="cite-venue">H. Qin, S. Sun, X. Yuan. 4th Int'l Conference on AI in Cybersecurity (ICAIC), Houston, Feb. 2025. DOI: 10.1109/ICAIC63015.2025.10848672.</div>
+          </div>
+        </li>
+        <li>
+          <span></span>
+          <div>
+            <div class="cite-title">Detecting Cyberbullying in Visual Content: A Large Vision-Language Model Approach</div>
+            <div class="cite-venue">J. Mu, K. Guo, N. Vishwamitra, H. Qin, I. Ajay, H. Hu. 23rd Int'l Conference on Machine Learning and Applications (ICMLA), Miami, Dec. 2024.</div>
+          </div>
+        </li>
+        <li>
+          <span></span>
+          <div>
+            <div class="cite-title">Automatic Screening for Children with Speech Disorder using Automatic Speech Recognition: Opportunities and Challenges</div>
+            <div class="cite-venue">D. Liu, J. Yang, I. Albrecht-Buehle, H. Qin, S. Li, Y. Hu, A. Nassereldine, J. Xiong. AAAI Fall Symposium on MI4EGH, Nov. 2024.</div>
+          </div>
+        </li>
+        <li>
+          <span></span>
+          <div>
+            <div class="cite-title">Generative AI Applications in Helping Children with Speech Language Issues</div>
+            <div class="cite-venue">H. Qin. AAAI Spring Symposium on Impact of GenAI on Social and Individual Well-Being, Stanford University, Mar. 2024.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="honors">
+      <h2>Honors &amp; Distinctions</h2>
+      <hr class="section-rule">
+      <div class="honors-grid">
+        <dl>
+          <dt>Feb 2026</dt>
+          <dd>NCWIT Aspirations in Computing (AiC) High School Award</dd>
+          <dt>Oct 2025</dt>
+          <dd>Math Prize for Girls, MIT (invitation only)</dd>
+          <dt>2025–26</dt>
+          <dd>AMC 12, AIME qualifier</dd>
+          <dt>2024–25</dt>
+          <dd>AMC 10 Distinguished Honor Roll (top 1% nationally), AIME qualifier</dd>
+          <dt>Jan 2026</dt>
+          <dd>USACO Bronze, Silver, and Gold divisions</dd>
+        </dl>
+        <dl>
+          <dt>Jun 2025</dt>
+          <dd>2nd place, AFA CyberCamp cybersecurity competition, University of Pittsburgh</dd>
+          <dt>2025</dt>
+          <dd>USA Biology Olympiad, Honorable Mention (top 20%)</dd>
+          <dt>2025</dt>
+          <dd>National Latin Exam — Advanced, 39/40, Summa Cum Laude (Gold)</dd>
+          <dt>Oct 2025</dt>
+          <dd>National Service Honor Award, Bronze medal</dd>
+          <dt>Sep 2024</dt>
+          <dd>Presidential Volunteer Service Award, Gold medal</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="activities">
+      <h2>Activities &amp; Leadership</h2>
+      <hr class="section-rule">
+      <div class="entry">
+        <div class="meta">Sept 2023 — Present &middot; Hope Chinese School, Falls Church, VA</div>
+        <h3>Instructor, Science Explorer Course</h3>
+        <p>Designs curriculum and hands-on activities in meteorology, forensics, chemistry, and physics; teaches grades 3–5 weekly and assesses learning outcomes.</p>
+      </div>
+      <div class="entry">
+        <div class="meta">Oct 2024 — Present &middot; AI4Abilities, McLean, VA</div>
+        <h3>Chief Innovation Officer</h3>
+        <p>Partnered with Sunberry Art Studio on hospital holiday-card and veteran-outreach programs.</p>
+      </div>
+      <div class="entry">
+        <div class="meta">Since Fall 2023 &middot; Thomas Jefferson High School</div>
+        <h3>Varsity Math Team, Varsity Computer Team, Cross Country</h3>
+        <p>Also mentors the TJ Intermediate Math Open (team placed 1st of 35+) and IEEE-CS cybersecurity workshops.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <hr class="section-rule">
+      <div class="skills">
+        <span>Python</span><span>Java</span><span>Web development</span>
+        <span>Deep learning &amp; transformers</span><span>Experiment design</span>
+        <span>Data analytics</span><span>Latin</span><span>Scientific writing</span>
+        <span>Creative writing</span><span>Poster &amp; oral presentation</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <span>&copy; 2026 Helen T. Qin</span>
+  <a href="mailto:helen.ty.qin@gmail.com">helen.ty.qin@gmail.com</a>
+</footer>
