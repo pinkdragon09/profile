@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Helen T. Qin</title>
 <meta name="description" content="Helen T. Qin — AI research, competitive math &amp; CS, Thomas Jefferson High School for Science and Technology.">
+<meta property="og:image" content="assets/github-user-logo.jpeg">
+<link rel="icon" type="image/jpeg" href="assets/github-user-logo.jpeg">
 <style>
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -96,6 +98,20 @@
     color: var(--ink-soft);
     font-size: 1rem;
     margin: 0;
+  }
+  .profile-lockup {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(8rem, 20vw, 12rem);
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .profile-logo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--ink);
   }
 
   .stat-strip {
@@ -272,6 +288,16 @@
     font-size: 0.78rem;
     color: var(--ink-soft);
   }
+
+  @media (max-width: 640px) {
+    .profile-lockup {
+      grid-template-columns: 1fr;
+    }
+    .profile-logo {
+      width: min(11rem, 58vw);
+      justify-self: start;
+    }
+  }
 </style>
 </head>
 <body>
@@ -280,8 +306,13 @@
   <div class="board-top">
     <span>Class of 2027</span>
   </div>
-  <h1>Helen T. Qin</h1>
-  <p class="role">// AI research &middot; competitive math &amp; CS &middot; TJHSST</p>
+  <div class="profile-lockup">
+    <div>
+      <h1>Helen T. Qin</h1>
+      <p class="role">// AI research &middot; competitive math &amp; CS &middot; TJHSST</p>
+    </div>
+    <img class="profile-logo" src="assets/github-user-logo.jpeg" alt="Helen T. Qin GitHub logo">
+  </div>
 </header>
 
 <div class="stat-strip">
